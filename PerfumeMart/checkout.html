@@ -1,0 +1,995 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | PerfumeMart Luxury</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --black: #0b0b09;
+            --panel: #141411;
+            --gold: #d9b779;
+            --cream: #f5f0e7;
+            --muted: #aaa69c;
+            --line: #ffffff1c;
+            --success: #a9d9ad;
+            --danger: #ffaaa0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--black);
+            color: var(--cream);
+            font-family: "DM Sans", sans-serif;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .announcement {
+            padding: 9px 12px;
+            text-align: center;
+            background: var(--gold);
+            color: #17130c;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        header {
+            min-height: 82px;
+            padding: 15px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 1px solid var(--line);
+            background: #0b0b09;
+        }
+
+        .logo {
+            color: var(--gold);
+            font: 700 30px "Cormorant Garamond", serif;
+        }
+
+        .logo small {
+            display: block;
+            text-align: center;
+            font: 9px "DM Sans", sans-serif;
+            letter-spacing: 4px;
+        }
+
+        nav {
+            display: flex;
+            gap: 26px;
+            align-items: center;
+        }
+
+        nav a {
+            color: #d8d3c9;
+            font-size: 12px;
+            transition: color .3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--gold);
+        }
+
+        .cart-link {
+            border: 1px solid var(--gold);
+            padding: 9px 14px;
+            color: var(--gold);
+        }
+
+        .hero {
+            padding: 47px 7% 42px;
+            background:
+                linear-gradient(90deg, #11100df5, #11100dba),
+                url("https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=1600&q=85") center 43% / cover;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            font-size: 10px;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+        h1, h2, h3 {
+            font-family: "Cormorant Garamond", serif;
+        }
+
+        h1 {
+            font-size: clamp(43px, 6vw, 65px);
+            font-weight: 500;
+            line-height: 1.05;
+        }
+
+        h1 span {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .hero p {
+            color: #c1baae;
+            margin-top: 12px;
+            font-size: 13px;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 42px 7% 70px;
+        }
+
+        .steps {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            color: var(--muted);
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-number {
+            width: 26px;
+            height: 26px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            color: var(--gold);
+        }
+
+        .step.active {
+            color: var(--gold);
+        }
+
+        .step-line {
+            height: 1px;
+            width: 35px;
+            background: var(--line);
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(280px, .75fr);
+            gap: 25px;
+            align-items: start;
+        }
+
+        .panel {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            padding: 25px;
+            margin-bottom: 22px;
+        }
+
+        .panel-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 22px;
+            padding-bottom: 17px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .panel-heading h2 {
+            font-size: 29px;
+            font-weight: 500;
+        }
+
+        .panel-heading span {
+            color: var(--gold);
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 95px minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 17px;
+            padding: 17px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-image {
+            height: 110px;
+            width: 95px;
+            overflow: hidden;
+            background: #25231d;
+        }
+
+        .cart-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-brand {
+            color: var(--gold);
+            font-size: 9px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .product-name {
+            font-size: 23px;
+            font-weight: 600;
+            margin: 3px 0;
+        }
+
+        .product-price {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 9px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .quantity button {
+            width: 27px;
+            height: 27px;
+            border: 1px solid #766443;
+            background: transparent;
+            color: var(--gold);
+            cursor: pointer;
+        }
+
+        .item-total {
+            text-align: right;
+            color: var(--gold);
+            font-size: 15px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .remove-btn {
+            margin-top: 10px;
+            display: block;
+            margin-left: auto;
+            color: var(--muted);
+            background: transparent;
+            border: none;
+            text-decoration: underline;
+            cursor: pointer;
+            font: 11px "DM Sans", sans-serif;
+        }
+
+        .empty {
+            padding: 35px 10px;
+            text-align: center;
+        }
+
+        .empty img {
+            width: 115px;
+            height: 135px;
+            object-fit: cover;
+            margin-bottom: 15px;
+            opacity: .8;
+        }
+
+        .empty h3 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .empty p {
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 20px;
+            background: var(--gold);
+            color: #17130c;
+            border: 1px solid var(--gold);
+            cursor: pointer;
+            font: 600 11px "DM Sans", sans-serif;
+            letter-spacing: 1px;
+            text-align: center;
+            transition: .25s;
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--gold);
+        }
+
+        .btn:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--gold);
+        }
+
+        .btn-outline:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0 15px;
+        }
+
+        .field {
+            margin-bottom: 17px;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            color: #d8d2c6;
+            font-size: 11px;
+            margin-bottom: 7px;
+        }
+
+        input, textarea {
+            width: 100%;
+            background: #0c0c0a;
+            color: var(--cream);
+            border: 1px solid #ffffff24;
+            padding: 13px 14px;
+            border-radius: 0;
+            font: 13px "DM Sans", sans-serif;
+            outline: none;
+        }
+
+        textarea {
+            min-height: 95px;
+            resize: vertical;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--gold);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #777268;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 11px 0;
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .summary-row strong {
+            color: var(--cream);
+            font-weight: 500;
+        }
+
+        .summary-total {
+            border-top: 1px solid var(--line);
+            margin-top: 12px;
+            padding-top: 19px;
+        }
+
+        .summary-total span {
+            color: var(--cream);
+            font-size: 13px;
+        }
+
+        .summary-total strong {
+            color: var(--gold);
+            font: 600 29px "Cormorant Garamond", serif;
+        }
+
+        .secure-note {
+            display: flex;
+            gap: 10px;
+            margin-top: 18px;
+            padding: 13px;
+            background: #ffffff06;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .secure-note b {
+            color: var(--gold);
+        }
+
+        #msg {
+            margin-top: 15px;
+            font-size: 12px;
+            overflow-wrap: anywhere;
+        }
+
+        #msg.error {
+            color: var(--danger);
+        }
+
+        #msg.success {
+            color: var(--success);
+        }
+
+        .trust-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .trust-item {
+            padding: 15px 10px;
+            border: 1px solid var(--line);
+            text-align: center;
+        }
+
+        .trust-item b {
+            display: block;
+            color: var(--gold);
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+
+        .trust-item span {
+            font-size: 9px;
+            color: var(--muted);
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 30px 7%;
+            border-top: 1px solid var(--line);
+        }
+
+        footer .footer-logo {
+            font: 600 25px "Cormorant Garamond", serif;
+            color: var(--gold);
+        }
+
+        footer p {
+            font-size: 10px;
+            color: var(--muted);
+        }
+
+        @media (max-width: 800px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-panel {
+                order: -1;
+            }
+
+            main {
+                padding: 30px 5% 50px;
+            }
+
+            .hero {
+                padding: 38px 5%;
+            }
+
+            header {
+                padding: 16px 5%;
+            }
+
+            nav {
+                gap: 13px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            header {
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                font-size: 25px;
+            }
+
+            nav {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            nav a {
+                font-size: 11px;
+            }
+
+            .panel {
+                padding: 17px;
+            }
+
+            .cart-item {
+                grid-template-columns: 72px minmax(0, 1fr);
+                gap: 12px;
+            }
+
+            .cart-image {
+                width: 72px;
+                height: 92px;
+            }
+
+            .item-total {
+                grid-column: 2;
+                text-align: left;
+            }
+
+            .remove-btn {
+                margin-left: 0;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+
+            .steps {
+                gap: 7px;
+                font-size: 9px;
+            }
+
+            .step-line {
+                width: 15px;
+            }
+
+            .trust-row {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="announcement">
+        ✦ Discover your signature scent · PerfumeMart Luxury ✦
+    </div>
+
+    <header>
+        <a href="index.html" class="logo">
+            ✿ PerfumeMart
+            <small>LUXURY FRAGRANCES</small>
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="checkout.html" class="active">Cart / Checkout</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="eyebrow">YOUR SELECTION</div>
+        <h1>Almost <span>Yours.</span></h1>
+        <p>Complete your order and let your next favourite fragrance find its way to you.</p>
+    </section>
+
+    <main>
+        <div class="steps">
+            <div class="step">
+                <span class="step-number">1</span>
+                <span>YOUR CART</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step active">
+                <span class="step-number">2</span>
+                <span>DELIVERY DETAILS</span>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+                <span class="step-number">3</span>
+                <span>CONFIRMATION</span>
+            </div>
+        </div>
+
+        <div class="layout">
+            <div>
+                <section class="panel">
+                    <div class="panel-heading">
+                        <h2>Your Cart</h2>
+                        <span id="item-count">0 ITEMS</span>
+                    </div>
+
+                    <div id="cart"></div>
+
+                    <a href="products.html" class="btn btn-outline">← CONTINUE SHOPPING</a>
+                </section>
+
+                <section class="panel" id="delivery-panel">
+                    <div class="panel-heading">
+                        <h2>Delivery Details</h2>
+                        <span>STEP 02</span>
+                    </div>
+
+                    <form id="checkout-form">
+                        <div class="form-grid">
+                            <div class="field full">
+                                <label for="name">Full Name *</label>
+                                <input id="name" name="name" type="text"
+                                       placeholder="Enter your full name"
+                                       autocomplete="name" required maxlength="100">
+                            </div>
+
+                            <div class="field full">
+                                <label for="phone">Phone Number *</label>
+                                <input id="phone" name="phone" type="tel"
+                                       placeholder="Enter your phone number"
+                                       autocomplete="tel" required maxlength="20">
+                            </div>
+
+                            <div class="field full">
+                                <label for="address">Full Delivery Address *</label>
+                                <textarea id="address" name="address"
+                                          placeholder="House number, street, city, state and PIN code"
+                                          autocomplete="street-address"
+                                          required maxlength="500"></textarea>
+                            </div>
+                        </div>
+
+                        <button class="btn" id="place" type="submit" style="width:100%">
+                            PLACE MY ORDER &nbsp; →
+                        </button>
+
+                        <p id="msg" role="status" aria-live="polite"></p>
+                    </form>
+                </section>
+            </div>
+
+            <aside class="summary-panel">
+                <section class="panel">
+                    <div class="panel-heading">
+                        <h2>Order Summary</h2>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <strong id="subtotal">₹0</strong>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Delivery</span>
+                        <strong id="delivery">Calculated at checkout</strong>
+                    </div>
+
+                    <div class="summary-row summary-total">
+                        <span>Total</span>
+                        <strong id="total">₹0</strong>
+                    </div>
+
+                    <div class="secure-note">
+                        <span>✦</span>
+                        <div>
+                            <b>ORDER WITH CONFIDENCE</b>
+                            <p>Check your order details before placing your order.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="trust-row">
+                    <div class="trust-item">
+                        <b>✧ QUALITY</b>
+                        <span>Carefully selected</span>
+                    </div>
+                    <div class="trust-item">
+                        <b>◇ SIMPLE</b>
+                        <span>Easy ordering</span>
+                    </div>
+                    <div class="trust-item">
+                        <b>♡ SUPPORT</b>
+                        <span>Customer care</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            <div class="footer-logo">PerfumeMart</div>
+            <p>Find the fragrance that feels like you.</p>
+        </div>
+        <p>© 2026 PerfumeMart. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let cart = [];
+
+        const cartBox = document.getElementById("cart");
+        const message = document.getElementById("msg");
+        const placeButton = document.getElementById("place");
+        const form = document.getElementById("checkout-form");
+
+        const perfumeImages = {
+            1: "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=300&q=80",
+            2: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=300&q=80",
+            3: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=300&q=80",
+            4: "https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=300&q=80"
+        };
+
+        function readCart() {
+            try {
+                const saved = JSON.parse(localStorage.getItem("cart") || "[]");
+
+                if (!Array.isArray(saved)) return [];
+
+                return saved.filter(item =>
+                    item &&
+                    Number.isInteger(Number(item.id)) &&
+                    Number(item.id) > 0 &&
+                    Number.isFinite(Number(item.price)) &&
+                    Number(item.price) >= 0 &&
+                    Number.isInteger(Number(item.qty)) &&
+                    Number(item.qty) > 0 &&
+                    typeof item.name === "string"
+                ).map(item => ({
+                    id: Number(item.id),
+                    name: item.name,
+                    price: Number(item.price),
+                    qty: Number(item.qty)
+                }));
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function money(value) {
+            return "₹" + Number(value).toLocaleString("en-IN", {
+                maximumFractionDigits: 2
+            });
+        }
+
+        function showMessage(text, type) {
+            message.textContent = text;
+            message.className = type || "";
+        }
+
+        function render() {
+            cart = readCart();
+
+            const count = cart.reduce((sum, item) => sum + item.qty, 0);
+            const total = cart.reduce(
+                (sum, item) => sum + item.price * item.qty, 0
+            );
+
+            document.getElementById("item-count").textContent =
+                count + (count === 1 ? " ITEM" : " ITEMS");
+
+            document.getElementById("subtotal").textContent = money(total);
+            document.getElementById("total").textContent = money(total);
+            document.getElementById("delivery").textContent = "Confirm at checkout";
+
+            if (!cart.length) {
+                cartBox.innerHTML = `
+                    <div class="empty">
+                        <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=250&q=80" alt="Perfume bottle">
+                        <h3>Your cart is waiting.</h3>
+                        <p>Explore our fragrance collection and find your next signature scent.</p>
+                        <a href="products.html" class="btn">EXPLORE PERFUMES →</a>
+                    </div>
+                `;
+
+                placeButton.disabled = true;
+                return;
+            }
+
+            placeButton.disabled = false;
+
+            cartBox.replaceChildren();
+
+            cart.forEach((item, index) => {
+                const row = document.createElement("article");
+                row.className = "cart-item";
+
+                const imageWrap = document.createElement("div");
+                imageWrap.className = "cart-image";
+
+                const image = document.createElement("img");
+                image.src = perfumeImages[item.id] ||
+                    perfumeImages[1];
+                image.alt = item.name;
+                image.loading = "lazy";
+                imageWrap.appendChild(image);
+
+                const details = document.createElement("div");
+
+                const brand = document.createElement("div");
+                brand.className = "product-brand";
+                brand.textContent = "PerfumeMart Collection";
+
+                const name = document.createElement("h3");
+                name.className = "product-name";
+                name.textContent = item.name;
+
+                const price = document.createElement("p");
+                price.className = "product-price";
+                price.textContent = money(item.price) + " each";
+
+                const quantity = document.createElement("div");
+                quantity.className = "quantity";
+
+                const minus = document.createElement("button");
+                minus.type = "button";
+                minus.textContent = "−";
+                minus.setAttribute("aria-label", "Decrease quantity");
+                minus.disabled = item.qty <= 1;
+                minus.addEventListener("click", () => changeQty(index, -1));
+
+                const qtyText = document.createElement("span");
+                qtyText.textContent = "Qty: " + item.qty;
+
+                const plus = document.createElement("button");
+                plus.type = "button";
+                plus.textContent = "+";
+                plus.setAttribute("aria-label", "Increase quantity");
+                plus.addEventListener("click", () => changeQty(index, 1));
+
+                quantity.append(minus, qtyText, plus);
+
+                details.append(brand, name, price, quantity);
+
+                const totalWrap = document.createElement("div");
+                totalWrap.className = "item-total";
+                totalWrap.textContent = money(item.price * item.qty);
+
+                const remove = document.createElement("button");
+                remove.type = "button";
+                remove.className = "remove-btn";
+                remove.textContent = "Remove";
+                remove.addEventListener("click", () => removeItem(index));
+
+                totalWrap.appendChild(remove);
+
+                row.append(imageWrap, details, totalWrap);
+                cartBox.appendChild(row);
+            });
+        }
+
+        function saveCart() {
+            localStorage.setItem("cart", JSON.stringify(cart));
+            render();
+        }
+
+        function changeQty(index, amount) {
+            if (!cart[index]) return;
+
+            const next = cart[index].qty + amount;
+
+            if (next < 1 || next > 99) return;
+
+            cart[index].qty = next;
+            saveCart();
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            saveCart();
+            showMessage("Cart updated.", "");
+        }
+
+        form.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            cart = readCart();
+
+            if (!cart.length) {
+                showMessage("Your cart is empty. Add a perfume first.", "error");
+                return;
+            }
+
+            const body = {
+                name: document.getElementById("name").value.trim(),
+                phone: document.getElementById("phone").value.trim(),
+                address: document.getElementById("address").value.trim(),
+                items: cart.map(item => ({
+                    id: item.id,
+                    qty: item.qty
+                }))
+            };
+
+            if (!body.name || !body.phone || !body.address) {
+                showMessage("Please fill in all delivery details.", "error");
+                return;
+            }
+
+            if (!/^[0-9+\-\s()]{7,20}$/.test(body.phone)) {
+                showMessage("Please enter a valid phone number.", "error");
+                return;
+            }
+
+            placeButton.disabled = true;
+            placeButton.textContent = "PROCESSING ORDER...";
+
+            showMessage("Submitting your order...", "");
+
+            try {
+                const response = await fetch("/api/orders", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(body)
+                });
+
+                const data = await response.json();
+
+                if (!response.ok || data.error) {
+                    throw new Error(data.error || "Unable to place order.");
+                }
+
+                localStorage.removeItem("cart");
+                cart = [];
+                render();
+
+                showMessage(
+                    "Order #" + data.orderId +
+                    " placed successfully! Total: " + money(data.total),
+                    "success"
+                );
+
+                form.reset();
+
+            } catch (error) {
+                showMessage(
+                    error.message || "Server not reachable. Please try again.",
+                    "error"
+                );
+            } finally {
+                placeButton.textContent = "PLACE MY ORDER →";
+                placeButton.disabled = cart.length === 0;
+            }
+        });
+
+        render();
+    </script>
+</body>
+</html>

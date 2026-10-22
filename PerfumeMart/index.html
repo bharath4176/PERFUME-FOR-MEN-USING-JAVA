@@ -1,0 +1,648 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PerfumeMart | Luxury Fragrances</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #d9b779;
+            --black: #0b0b09;
+            --card: #141411;
+            --white: #f5f0e7;
+            --muted: #aaa69c;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: "DM Sans", sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .announcement {
+            text-align: center;
+            background: var(--gold);
+            color: #17130c;
+            padding: 9px;
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        header {
+            height: 78px;
+            padding: 0 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ffffff18;
+            background: #0b0b09;
+        }
+
+        .logo {
+            color: var(--gold);
+            font-family: "Cormorant Garamond", serif;
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .logo small {
+            display: block;
+            font: 9px "DM Sans", sans-serif;
+            letter-spacing: 4px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        nav a {
+            font-size: 13px;
+            color: #dedbd4;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        .cart-link {
+            border: 1px solid var(--gold);
+            padding: 10px 15px;
+            color: var(--gold);
+        }
+
+        .hero {
+            min-height: 490px;
+            padding: 75px 8%;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(90deg, #080907 5%, #080907ed 34%, #08090735 100%),
+                url("https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=1800&q=90") center 42% / cover;
+        }
+
+        .hero-content {
+            max-width: 530px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .eyebrow {
+            color: var(--gold);
+            font-size: 11px;
+            letter-spacing: 4px;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(50px, 6vw, 78px);
+            line-height: .98;
+            font-weight: 500;
+            margin-bottom: 22px;
+        }
+
+        h1 span {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .hero p {
+            color: #c6c2b9;
+            line-height: 1.9;
+            font-size: 14px;
+            max-width: 420px;
+            margin-bottom: 28px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 24px;
+            background: var(--gold);
+            color: #17130c;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .5px;
+            border: 1px solid var(--gold);
+            transition: .3s;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 25px 7%;
+            border-top: 1px solid #ffffff12;
+            border-bottom: 1px solid #ffffff12;
+            background: #10100e;
+        }
+
+        .benefit {
+            text-align: center;
+            padding: 10px;
+            border-right: 1px solid #ffffff1c;
+        }
+
+        .benefit:last-child {
+            border: none;
+        }
+
+        .benefit strong {
+            display: block;
+            color: var(--gold);
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .benefit span {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .section {
+            padding: 65px 7%;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 28px;
+        }
+
+        .section-label {
+            color: var(--gold);
+            letter-spacing: 3px;
+            font-size: 10px;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 43px;
+            font-weight: 500;
+        }
+
+        .view-all {
+            font-size: 12px;
+            color: var(--gold);
+            padding-bottom: 8px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .product {
+            background: var(--card);
+            border: 1px solid #ffffff19;
+            overflow: hidden;
+            transition: .3s;
+        }
+
+        .product:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 245px;
+            position: relative;
+            overflow: hidden;
+            background: #24221d;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .6s;
+        }
+
+        .product:hover .product-image img {
+            transform: scale(1.07);
+        }
+
+        .tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 6px 9px;
+            background: var(--gold);
+            color: #16120b;
+            font-size: 9px;
+            letter-spacing: 1px;
+        }
+
+        .product-info {
+            padding: 17px;
+        }
+
+        .brand {
+            color: var(--muted);
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .product h3 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            color: var(--gold);
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .add-btn {
+            width: 100%;
+            padding: 11px 8px;
+            color: var(--gold);
+            background: transparent;
+            border: 1px solid #b99b61;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 11px;
+            transition: .3s;
+        }
+
+        .add-btn:hover {
+            background: var(--gold);
+            color: #17130c;
+        }
+
+        .story {
+            margin: 0 7% 65px;
+            min-height: 260px;
+            padding: 50px;
+            display: flex;
+            align-items: center;
+            background:
+                linear-gradient(90deg, #11100df5, #11100d90),
+                url("https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=1500&q=85") center / cover;
+            border: 1px solid #ffffff15;
+        }
+
+        .story-content {
+            max-width: 470px;
+        }
+
+        .story h2 {
+            margin-bottom: 12px;
+        }
+
+        .story p {
+            color: #c3bdb1;
+            line-height: 1.8;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            padding: 35px 7%;
+            border-top: 1px solid #ffffff1a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        footer p {
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .footer-logo {
+            color: var(--gold);
+            font-family: "Cormorant Garamond", serif;
+            font-size: 25px;
+        }
+
+        @media (max-width: 900px) {
+            .products {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .hero {
+                background-position: 58% center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                height: auto;
+                padding: 18px 5%;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .logo {
+                font-size: 25px;
+            }
+
+            nav {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            nav a {
+                font-size: 11px;
+            }
+
+            .hero {
+                min-height: 470px;
+                padding: 55px 7%;
+                background:
+                    linear-gradient(90deg, #080907f5, #080907b0),
+                    url("https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=900&q=80") center / cover;
+            }
+
+            h1 {
+                font-size: 54px;
+            }
+
+            .benefits {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px 0;
+                padding: 22px 4%;
+            }
+
+            .benefit:nth-child(2) {
+                border-right: none;
+            }
+
+            .section {
+                padding: 45px 5%;
+            }
+
+            h2 {
+                font-size: 34px;
+            }
+
+            .products {
+                gap: 12px;
+            }
+
+            .product-image {
+                height: 180px;
+            }
+
+            .product-info {
+                padding: 12px;
+            }
+
+            .product h3 {
+                font-size: 20px;
+            }
+
+            .story {
+                margin: 0 5% 40px;
+                padding: 30px 22px;
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="announcement">
+        ✦ Discover luxury fragrances · Free delivery on eligible orders ✦
+    </div>
+
+    <header>
+        <a href="index.html" class="logo">
+            ✿ PerfumeMart
+            <small>LUXURY FRAGRANCES</small>
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="#about">Our Story</a>
+            <a href="checkout.html" class="cart-link">Cart <span id="cart-count">0</span></a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="eyebrow">THE ART OF FRAGRANCE</div>
+
+                <h1>Find Your<br><span>Signature Scent.</span></h1>
+
+                <p>
+                    Discover fragrances that leave a lasting impression.
+                    Explore elegant scents, timeless classics and modern
+                    favourites, all in one place.
+                </p>
+
+                <a href="products.html" class="btn">EXPLORE COLLECTION &nbsp; →</a>
+            </div>
+        </section>
+
+        <section class="benefits">
+            <div class="benefit">
+                <strong>✧ Premium Selection</strong>
+                <span>Curated fragrances</span>
+            </div>
+            <div class="benefit">
+                <strong>◇ Great Value</strong>
+                <span>Beautiful scents, fair prices</span>
+            </div>
+            <div class="benefit">
+                <strong>♧ Easy Ordering</strong>
+                <span>Simple shopping experience</span>
+            </div>
+            <div class="benefit">
+                <strong>♡ Customer Care</strong>
+                <span>Here when you need us</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-head">
+                <div>
+                    <div class="section-label">THE COLLECTION</div>
+                    <h2>Popular Picks</h2>
+                </div>
+                <a class="view-all" href="products.html">View All &nbsp; →</a>
+            </div>
+
+            <div class="products">
+                <article class="product">
+                    <div class="product-image">
+                        <span class="tag">BESTSELLER</span>
+                        <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=700&q=85"
+                             alt="Elegant perfume bottle" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <div class="brand">The Men Company</div>
+                        <h3>Oud Wood</h3>
+                        <div class="price">₹1,499</div>
+                        <button class="add-btn" onclick="addToCart(1, 'Oud Wood', 1499)">
+                            ♧ &nbsp; Add to Cart
+                        </button>
+                    </div>
+                </article>
+
+                <article class="product">
+                    <div class="product-image">
+                        <span class="tag">CLASSIC</span>
+                        <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=700&q=85"
+                             alt="Luxury fragrance bottle" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <div class="brand">The Men Company</div>
+                        <h3>Royal Musk</h3>
+                        <div class="price">₹999</div>
+                        <button class="add-btn" onclick="addToCart(2, 'Royal Musk', 999)">
+                            ♧ &nbsp; Add to Cart
+                        </button>
+                    </div>
+                </article>
+
+                <article class="product">
+                    <div class="product-image">
+                        <span class="tag">SIGNATURE</span>
+                        <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=700&q=85"
+                             alt="Designer fragrance" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <div class="brand">The Men Company</div>
+                        <h3>Classic Amber</h3>
+                        <div class="price">₹1,299</div>
+                        <button class="add-btn" onclick="addToCart(3, 'Classic Amber', 1299)">
+                            ♧ &nbsp; Add to Cart
+                        </button>
+                    </div>
+                </article>
+
+                <article class="product">
+                    <div class="product-image">
+                        <span class="tag">FRESH</span>
+                        <img src="https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=700&q=85"
+                             alt="Premium perfume" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <div class="brand">The Men Company</div>
+                        <h3>Fresh Aqua</h3>
+                        <div class="price">₹799</div>
+                        <button class="add-btn" onclick="addToCart(4, 'Fresh Aqua', 799)">
+                            ♧ &nbsp; Add to Cart
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="story" id="about">
+            <div class="story-content">
+                <div class="section-label">MORE THAN A FRAGRANCE</div>
+                <h2>Make Every Moment Memorable.</h2>
+                <p>
+                    From refreshing everyday scents to rich evening fragrances,
+                    find a scent that matches your mood and your moment.
+                </p>
+                <a href="products.html" class="btn">DISCOVER MORE &nbsp; →</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div>
+            <div class="footer-logo">PerfumeMart</div>
+            <p>Find the fragrance that feels like you.</p>
+        </div>
+        <p>© 2026 PerfumeMart. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function addToCart(id, name, price) {
+            let cart = [];
+
+            try {
+                cart = JSON.parse(localStorage.getItem("cart")) || [];
+            } catch (error) {
+                cart = [];
+            }
+
+            let existing = cart.find(item => Number(item.id) === id);
+
+            if (existing) {
+                existing.qty = (Number(existing.qty) || 0) + 1;
+            } else {
+                cart.push({
+                    id: id,
+                    name: name,
+                    price: price,
+                    qty: 1
+                });
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+            updateCartCount();
+            alert(name + " added to cart!");
+        }
+
+        function updateCartCount() {
+            let cart = [];
+
+            try {
+                cart = JSON.parse(localStorage.getItem("cart")) || [];
+            } catch (error) {
+                cart = [];
+            }
+
+            let count = cart.reduce(
+                (sum, item) => sum + (Number(item.qty) || 0), 0
+            );
+
+            document.getElementById("cart-count").textContent = count;
+        }
+
+        updateCartCount();
+    </script>
+</body>
+</html>
